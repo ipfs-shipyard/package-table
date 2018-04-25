@@ -1,0 +1,30 @@
+{
+  "name": "module-table",
+  "version": "0.0.0",
+  "description": "Auto generate a module table in markdown from JSON ",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diasdavid/module-table.git"
+  },
+  "keywords": [
+    "Markdown",
+    "JSON",
+    "module",
+    "table",
+    "track",
+    "packages"
+  ],
+  "author": "David Dias <mail@daviddias.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diasdavid/module-table/issues"
+  },
+  "homepage": "https://github.com/diasdavid/module-table#readme",
+  "devDependencies": {
+    "standard": "^11.0.1"
+  }
+}
