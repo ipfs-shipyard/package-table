@@ -3,6 +3,7 @@
 
 const yargs = require('yargs')
 const path = require('path')
+const packageBadges = require('./badges')
 const argv = yargs.argv
 
 if (!argv.data) {
@@ -11,37 +12,13 @@ if (!argv.data) {
 }
 
 const data = require(path.join(process.cwd(), argv.data))
-
-const isItemPackage = (item) => Array.isArray(item)
-
-const nameFn = (gh, pkg) => `[\`${pkg}\`](//github.com/${gh})`
-
-const packageBadges = {
-  'Package': nameFn,
-  'Name': nameFn,
-  'Version': (gh, pkg) => `[![npm](https://img.shields.io/npm/v/${pkg}.svg?maxAge=86400&style=flat-square)](//github.com/${gh}/releases)`,
-  'Deps': (gh, pkg) => `[![Deps](https://david-dm.org/${gh}.svg?style=flat-square)](https://david-dm.org/${gh})`,
-  'CI': (gh, pkg, lang = 'js') => {
-    if (gh.indexOf('/go-') !== -1) {
-      lang = 'go'
-    }
-
-    if (lang === 'go') {
-      return `[![Travis CI](https://travis-ci.org/${gh}.svg?branch=master)](https://travis-ci.org/${gh})`
-    }
-
-    // Need to fix the path for jenkins links, as jenkins adds `/job/` between everything
-    const jenkinsPath = gh.split('/').join('/job/')
-    return `[![jenkins](https://ci.ipfs.team/buildStatus/icon?job=${gh}/master)](https://ci.ipfs.team/job/${jenkinsPath}/job/master/)`
-  },
-  'Coverage': (gh, npm) => `[![codecov](https://codecov.io/gh/${gh}/branch/master/graph/badge.svg)](https://codecov.io/gh/${gh})`
-}
+const isItemPackage = Array.isArray
 
 // Creates the table row for a package
 const generatePackageRow = (item) => {
   const row = data.columns.map(col => {
-    // First string is GitHub path, second is the package name, third is the package language (defaults to js)
-    return packageBadges[col](item[0], item[1], item[2])
+    // First string is GitHub path, second is the package name
+    return packageBadges[col](...item)
   }).join(' | ')
 
   const fullRow = `| ${row} |`
