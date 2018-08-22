@@ -1,3 +1,19 @@
+const https = require('https')
+
+const badgeExists = url => new Promise(resolve => {
+  const req = https.request(url, {
+    method: 'HEAD'
+  }, res => {
+    resolve(res.statusCode !== 404)
+  })
+
+  req.on('error', _ => {
+    resolve(false)
+  })
+
+  req.end()
+})
+
 const name = (gh, pkg) => {
   return `[\`${pkg}\`](//github.com/${gh})`
 }
@@ -10,19 +26,33 @@ const deps = ({gh}) => {
   return `[![Deps](https://david-dm.org/${gh}.svg?style=flat-square)](https://david-dm.org/${gh})`
 }
 
-const ciTravis = (gh) => {
-  return `[![Travis CI](https://travis-ci.org/${gh}.svg?branch=master)](https://travis-ci.org/${gh})`
+const ciTravis = async (gh) => {
+  const url = `https://travis-ci.org/${gh}.svg?branch=master`
+
+  if (await badgeExists(url)) {
+    return `[![Travis CI](${url})](https://travis-ci.org/${gh})`
+  } else {
+    return 'N/A'
+  }   
 }
 
-const ciJenkins = (gh) => {
+const ciJenkins = async (gh) => {
   // Need to fix the path for jenkins links, as jenkins adds `/job/` between everything
   const jenkinsPath = gh.split('/').join('/job/')
-  return `[![jenkins](https://ci.ipfs.team/buildStatus/icon?job=${gh}/master)](https://ci.ipfs.team/job/${jenkinsPath}/job/master/)`
+  const badge = `https://ci.ipfs.team/buildStatus/icon?job=${gh}/master`
+  
+  if (await badgeExists(badge)) {
+    return `[![jenkins](${badge})](https://ci.ipfs.team/job/${jenkinsPath}/job/master/)`
+  } else {
+    return 'N/A'
+  } 
 }
 
 const coverage = (gh) => {
   return `[![codecov](https://codecov.io/gh/${gh}/branch/master/graph/badge.svg)](https://codecov.io/gh/${gh})`
 }
+
+const description = (gh, pkg, desc) => desc
 
 module.exports = {
   Package: name,
@@ -32,5 +62,6 @@ module.exports = {
   CI: ciJenkins,
   'CI/Jenkins': ciJenkins,
   'CI/Travis': ciTravis,
-  Coverage: coverage
+  Coverage: coverage,
+  Description: description
 }
