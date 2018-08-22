@@ -16,9 +16,13 @@ const isItemPackage = Array.isArray
 
 // Creates the table row for a package
 const generatePackageRow = (item) => {
-  const row = data.columns.map(col => {
+  const row = data.columns.map((col, i) => {
     // First string is GitHub path, second is the package name
-    return packageBadges[col](...item)
+    if (i !== 0 && item[1].startsWith('interface-')) {
+      return ''
+    } else {
+      return packageBadges[col](...item)
+    }
   }).join(' | ')
 
   const fullRow = `| ${row} |`
