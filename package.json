@@ -1,10 +1,11 @@
 {
   "name": "package-table",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Auto generate a package table in markdown from JSON ",
   "bin": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "aegir lint",
+    "test": "aegir test -t node"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,7 @@
   },
   "homepage": "https://github.com/ipfs-shipyard/package-table#readme",
   "devDependencies": {
-    "standard": "^11.0.1"
+    "aegir": "^15.1.0"
   },
   "dependencies": {
     "yargs": "^12.0.1"
