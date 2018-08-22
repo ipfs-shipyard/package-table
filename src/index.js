@@ -14,8 +14,11 @@ const data = require(path.join(process.cwd(), argv.data))
 
 const isItemPackage = (item) => Array.isArray(item)
 
+const nameFn = (gh, pkg) => `[\`${pkg}\`](//github.com/${gh})`
+
 const packageBadges = {
-  'Package': (gh, pkg) => `[\`${pkg}\`](//github.com/${gh})`,
+  'Package': nameFn,
+  'Name': nameFn,
   'Version': (gh, pkg) => `[![npm](https://img.shields.io/npm/v/${pkg}.svg?maxAge=86400&style=flat-square)](//github.com/${gh}/releases)`,
   'Deps': (gh, pkg) => `[![Deps](https://david-dm.org/${gh}.svg?style=flat-square)](https://david-dm.org/${gh})`,
   'CI': (gh, pkg, lang = 'js') => {
