@@ -2,7 +2,7 @@ const name = (gh, pkg) => {
   return `[\`${pkg}\`](//github.com/${gh})`
 }
 
-const version = (gh, pkg) => {
+const npmVersion = (gh, pkg) => {
   return `[![npm](https://img.shields.io/npm/v/${pkg}.svg?maxAge=86400&style=flat-square)](//github.com/${gh}/releases)`
 }
 
@@ -27,7 +27,7 @@ const coverage = (gh) => {
 module.exports = {
   Package: name,
   Name: name,
-  Version: version,
+  Version: npmVersion,
   Deps: deps,
   CI: ciJenkins,
   'CI/Jenkins': ciJenkins,
