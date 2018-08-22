@@ -1,14 +1,14 @@
 {
-  "name": "module-table",
+  "name": "package-table",
   "version": "0.0.0",
-  "description": "Auto generate a module table in markdown from JSON ",
-  "main": "src/index.js",
+  "description": "Auto generate a package table in markdown from JSON ",
+  "bin": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diasdavid/module-table.git"
+    "url": "git+https://github.com/ipfs-shipyard/package-table.git"
   },
   "keywords": [
     "Markdown",
@@ -21,10 +21,13 @@
   "author": "David Dias <mail@daviddias.me>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diasdavid/module-table/issues"
+    "url": "https://github.com/ipfs-shipyard/package-table/issues"
   },
-  "homepage": "https://github.com/diasdavid/module-table#readme",
+  "homepage": "https://github.com/ipfs-shipyard/package-table#readme",
   "devDependencies": {
     "standard": "^11.0.1"
+  },
+  "dependencies": {
+    "yargs": "^12.0.1"
   }
 }
