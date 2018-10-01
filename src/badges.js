@@ -1,7 +1,11 @@
 const https = require('https')
+const {URL} = require('url');
 
 const badgeExists = url => new Promise(resolve => {
-  const req = https.request(url, {
+  const {hostname, path} = new URL(url)
+  const req = https.request({
+    hostname,
+    path,
     method: 'HEAD'
   }, res => {
     resolve(res.statusCode !== 404)
