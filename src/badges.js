@@ -1,7 +1,11 @@
 const https = require('https')
+const {URL} = require('url');
 
 const badgeExists = url => new Promise(resolve => {
-  const req = https.request(url, {
+  const {hostname, path} = new URL(url)
+  const req = https.request({
+    hostname,
+    path,
     method: 'HEAD'
   }, res => {
     resolve(res.statusCode !== 404)
@@ -22,7 +26,7 @@ const npmVersion = (gh, pkg) => {
   return `[![npm](https://img.shields.io/npm/v/${pkg}.svg?maxAge=86400&style=flat-square)](//github.com/${gh}/releases)`
 }
 
-const deps = ({gh}) => {
+const deps = (gh) => {
   return `[![Deps](https://david-dm.org/${gh}.svg?style=flat-square)](https://david-dm.org/${gh})`
 }
 
