@@ -1,5 +1,3 @@
-const https = require('https')
-const {URL} = require('url')
 const request = require('request')
 
 const badgeExists = url => new Promise(resolve => {
