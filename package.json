@@ -1,6 +1,6 @@
 {
   "name": "package-table",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Auto generate a package table in markdown from JSON ",
   "bin": "src/index.js",
   "scripts": {
