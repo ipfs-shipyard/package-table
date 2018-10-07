@@ -46,7 +46,7 @@ const coverage = (gh) => {
 
 const leadMaintainer = (_, pkg) => new Promise(resolve => {
   request.get(`https://unpkg.com/${pkg}/package.json`, (error, res, body) => {
-    if (error) {
+    if (error || res.statusCode >= 400) {
       return resolve('N/A')
     }
 
