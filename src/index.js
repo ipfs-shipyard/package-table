@@ -7,7 +7,7 @@ const packageBadges = require('./badges')
 const argv = yargs.argv
 
 if (!argv.data) {
-  console.log('Need to pass --data=<file with data')
+  console.log('Need to pass --data=<file with data>')
   process.exit()
 }
 

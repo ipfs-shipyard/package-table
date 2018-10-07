@@ -1,21 +1,9 @@
-const https = require('https')
-const {URL} = require('url');
+const request = require('request')
 
 const badgeExists = url => new Promise(resolve => {
-  const {hostname, path} = new URL(url)
-  const req = https.request({
-    hostname,
-    path,
-    method: 'HEAD'
-  }, res => {
-    resolve(res.statusCode !== 404)
+  request.head(url, (error, res) => {
+    resolve(!error && res.statusCode !== 404)
   })
-
-  req.on('error', _ => {
-    resolve(false)
-  })
-
-  req.end()
 })
 
 const name = (gh, pkg) => {
@@ -37,24 +25,43 @@ const ciTravis = async (gh) => {
     return `[![Travis CI](${url})](https://travis-ci.org/${gh})`
   } else {
     return 'N/A'
-  }   
+  }
 }
 
 const ciJenkins = async (gh) => {
   // Need to fix the path for jenkins links, as jenkins adds `/job/` between everything
   const jenkinsPath = gh.split('/').join('/job/')
   const badge = `https://ci.ipfs.team/buildStatus/icon?job=${gh}/master`
-  
+
   if (await badgeExists(badge)) {
     return `[![jenkins](${badge})](https://ci.ipfs.team/job/${jenkinsPath}/job/master/)`
   } else {
     return 'N/A'
-  } 
+  }
 }
 
 const coverage = (gh) => {
   return `[![codecov](https://codecov.io/gh/${gh}/branch/master/graph/badge.svg)](https://codecov.io/gh/${gh})`
 }
+
+const leadMaintainer = (_, pkg) => new Promise(resolve => {
+  request.get(`https://unpkg.com/${pkg}/package.json`, (error, res, body) => {
+    if (error) {
+      return resolve('N/A')
+    }
+
+    let lead = JSON.parse(body).leadMaintainer
+
+    if (lead) {
+      lead = lead.match(/(.*) <(.+\@.+\..*)>/)
+      const name = lead[1].trim()
+      const mail = lead[2].trim()
+      return resolve(`[${name}](mailto:${mail})`)
+    }
+
+    resolve('N/A')
+  })
+})
 
 const description = (gh, pkg, desc) => desc
 
@@ -66,6 +73,7 @@ module.exports = {
   CI: ciJenkins,
   'CI/Jenkins': ciJenkins,
   'CI/Travis': ciTravis,
+  'Lead Maintainer': leadMaintainer,
   Coverage: coverage,
   Description: description
 }
