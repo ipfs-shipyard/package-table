@@ -1,2 +1,3 @@
-# module-table
-Auto generate a module table in markdown from JSON
+# package-table
+
+Auto generate a package table in markdown from JSON.
