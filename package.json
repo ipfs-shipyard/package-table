@@ -1,6 +1,6 @@
 {
   "name": "package-table",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Auto generate a package table in markdown from JSON ",
   "bin": "src/index.js",
   "scripts": {
@@ -26,10 +26,10 @@
   },
   "homepage": "https://github.com/ipfs-shipyard/package-table#readme",
   "devDependencies": {
-    "aegir": "^15.3.1"
+    "aegir": "^18.2.1"
   },
   "dependencies": {
     "request": "^2.88.0",
-    "yargs": "^12.0.2"
+    "yargs": "^13.2.2"
   }
 }
