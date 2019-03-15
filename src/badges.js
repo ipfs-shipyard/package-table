@@ -19,22 +19,10 @@ const deps = (gh) => {
 }
 
 const ciTravis = async (gh) => {
-  const url = `https://travis-ci.org/${gh}.svg?branch=master`
+  const url = `https://travis-ci.com/${gh}.svg?branch=master`
 
   if (await badgeExists(url)) {
     return `[![Travis CI](${url})](https://travis-ci.org/${gh})`
-  } else {
-    return 'N/A'
-  }
-}
-
-const ciJenkins = async (gh) => {
-  // Need to fix the path for jenkins links, as jenkins adds `/job/` between everything
-  const jenkinsPath = gh.split('/').join('/job/')
-  const badge = `https://ci.ipfs.team/buildStatus/icon?job=${gh}/master`
-
-  if (await badgeExists(badge)) {
-    return `[![jenkins](${badge})](https://ci.ipfs.team/job/${jenkinsPath}/job/master/)`
   } else {
     return 'N/A'
   }
@@ -70,8 +58,7 @@ module.exports = {
   Name: name,
   Version: npmVersion,
   Deps: deps,
-  CI: ciJenkins,
-  'CI/Jenkins': ciJenkins,
+  CI: ciTravis,
   'CI/Travis': ciTravis,
   'Lead Maintainer': leadMaintainer,
   Coverage: coverage,
