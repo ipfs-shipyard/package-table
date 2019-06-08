@@ -22,7 +22,7 @@ const ciTravis = async (gh) => {
   const url = `https://travis-ci.com/${gh}.svg?branch=master`
 
   if (await badgeExists(url)) {
-    return `[![Travis CI](${url})](https://travis-ci.org/${gh})`
+    return `[![Travis CI](${url})](https://travis-ci.com/${gh})`
   } else {
     return 'N/A'
   }
