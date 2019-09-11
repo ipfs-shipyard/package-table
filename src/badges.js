@@ -29,7 +29,7 @@ const ciTravis = async (gh) => {
 }
 
 const coverage = (gh) => {
-  return `[![codecov](https://codecov.io/gh/${gh}/branch/master/graph/badge.svg)](https://codecov.io/gh/${gh})`
+  return `[![codecov](https://codecov.io/gh/${gh}/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/${gh})`
 }
 
 const leadMaintainer = (_, pkg) => new Promise(resolve => {
