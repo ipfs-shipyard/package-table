@@ -19,7 +19,7 @@ const deps = (gh) => {
 }
 
 const ciTravis = async (gh) => {
-  const url = `https://travis-ci.com/${gh}.svg?branch=master`
+  const url = `https://flat.badgen.net/travis/${gh}.svg?branch=master`
 
   if (await badgeExists(url)) {
     return `[![Travis CI](${url})](https://travis-ci.com/${gh})`
