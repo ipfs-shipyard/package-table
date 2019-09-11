@@ -19,7 +19,7 @@ const deps = (gh) => {
 }
 
 const ciTravis = async (gh) => {
-  const url = `https://travis-ci.com/${gh}.svg?branch=master`
+  const url = `https://flat.badgen.net/travis/${gh}.svg?branch=master`
 
   if (await badgeExists(url)) {
     return `[![Travis CI](${url})](https://travis-ci.com/${gh})`
@@ -29,7 +29,7 @@ const ciTravis = async (gh) => {
 }
 
 const coverage = (gh) => {
-  return `[![codecov](https://codecov.io/gh/${gh}/branch/master/graph/badge.svg)](https://codecov.io/gh/${gh})`
+  return `[![codecov](https://codecov.io/gh/${gh}/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/${gh})`
 }
 
 const leadMaintainer = (_, pkg) => new Promise(resolve => {
