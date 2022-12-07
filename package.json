@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/ipfs-shipyard/package-table#readme",
   "devDependencies": {
-    "aegir": "^18.2.1"
+    "aegir": "^37.6.1"
   },
   "dependencies": {
     "request": "^2.88.0",
