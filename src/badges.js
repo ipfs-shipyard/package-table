@@ -14,8 +14,8 @@ const npmVersion = (gh, pkg) => {
   return `[![npm](https://img.shields.io/npm/v/${pkg}.svg?maxAge=86400&style=flat-square)](//github.com/${gh}/releases)`
 }
 
-const deps = (gh) => {
-  return `[![Deps](https://david-dm.org/${gh}.svg?style=flat-square)](https://david-dm.org/${gh})`
+const deps = (gh, pkg) => {
+  return `![Deps](https://img.shields.io/librariesio/release/npm/${pkg}?logo=Libraries.io&logoColor=white&style=flat-square)`
 }
 
 const ciTravis = async (gh) => {
