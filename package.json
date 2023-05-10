@@ -2,34 +2,45 @@
   "name": "package-table",
   "version": "0.5.5",
   "description": "Auto generate a package table in markdown from JSON ",
-  "bin": "src/index.js",
-  "scripts": {
-    "lint": "aegir lint",
-    "test": "aegir test -t node"
-  },
+  "author": "David Dias <mail@daviddias.me>",
+  "license": "Apache-2.0 OR MIT",
+  "homepage": "https://github.com/ipfs-shipyard/package-table#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ipfs-shipyard/package-table.git"
   },
-  "keywords": [
-    "Markdown",
-    "JSON",
-    "module",
-    "table",
-    "track",
-    "packages"
-  ],
-  "author": "David Dias <mail@daviddias.me>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ipfs-shipyard/package-table/issues"
   },
-  "homepage": "https://github.com/ipfs-shipyard/package-table#readme",
-  "devDependencies": {
-    "aegir": "^18.2.1"
+  "keywords": [
+    "JSON",
+    "Markdown",
+    "module",
+    "packages",
+    "table",
+    "track"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.6.0"
+  },
+  "bin": "src/index.js",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "eslintConfig": {
+    "extends": "ipfs"
+  },
+  "scripts": {
+    "lint": "aegir lint",
+    "test": "aegir test -t node"
   },
   "dependencies": {
-    "request": "^2.88.0",
-    "yargs": "^13.2.2"
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "aegir": "^39.0.6"
   }
 }

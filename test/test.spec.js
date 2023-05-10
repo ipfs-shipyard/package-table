@@ -1,3 +1,6 @@
 'use strict'
+/* eslint-env mocha */
 
-console.log('Write me :D')
+describe('Write me :D', () => {
+
+})

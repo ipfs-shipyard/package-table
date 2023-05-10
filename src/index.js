@@ -1,13 +1,13 @@
 #! /usr/bin/env node
 'use strict'
 
-const yargs = require('yargs')
 const path = require('path')
+const yargs = require('yargs')
 const packageBadges = require('./badges')
 const argv = yargs.argv
 
 if (!argv.data) {
-  console.log('Need to pass --data=<file with data>')
+  console.log('Need to pass --data=<file with data>') // eslint-disable-line no-console
   process.exit()
 }
 
@@ -36,5 +36,5 @@ const generateRow = item => {
   const promises = data.rows.map(row => generateRow(row))
   const rows = (await Promise.all(promises)).join('\n')
 
-  console.log([header, hr, rows].join('\n'))
+  console.log([header, hr, rows].join('\n')) // eslint-disable-line no-console
 })()

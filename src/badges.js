@@ -1,24 +1,24 @@
-const request = require('request')
+'use strict'
 
-const badgeExists = url => new Promise(resolve => {
-  request.head(url, (error, res) => {
-    resolve(!error && res.statusCode !== 404)
-  })
-})
+const badgeExists = async (url) => {
+  const res = await fetch(url)
 
-const name = (gh, pkg) => {
+  return res.statusCode !== 404
+}
+
+const name = (gh, pkg, branch = 'master') => {
   return `[\`${pkg}\`](//github.com/${gh})`
 }
 
-const npmVersion = (gh, pkg) => {
-  return `[![npm](https://img.shields.io/npm/v/${pkg}.svg?maxAge=86400&style=flat-square)](//github.com/${gh}/releases)`
+const npmVersion = (gh, pkg, branch = 'master') => {
+  return `[![npm](https://img.shields.io/npm/v/${encodeURIComponent(pkg)}.svg?maxAge=86400&style=flat-square)](//github.com/${gh}/releases)`
 }
 
-const deps = (gh, pkg) => {
-  return `![Deps](https://img.shields.io/librariesio/release/npm/${pkg}?logo=Libraries.io&logoColor=white&style=flat-square)`
+const deps = (gh, pkg, branch = 'master') => {
+  return `[![Deps](https://img.shields.io/librariesio/release/npm/${encodeURIComponent(pkg)}?logo=Libraries.io&logoColor=white&style=flat-square)](//libraries.io/npm/${encodeURIComponent(pkg)})`
 }
 
-const ciTravis = async (gh) => {
+const ciTravis = async (gh, pkg, branch = 'master', ci = 'main.yml') => {
   const url = `https://flat.badgen.net/travis/${gh}/master`
 
   if (await badgeExists(url)) {
@@ -28,28 +28,19 @@ const ciTravis = async (gh) => {
   }
 }
 
-const coverage = (gh) => {
-  return `[![codecov](https://codecov.io/gh/${gh}/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/${gh})`
+const ciGitHub = async (gh, pkg, branch = 'master', ci = 'main.yml') => {
+  const url = `https://img.shields.io/github/actions/workflow/status/${gh}/${ci}?branch=${branch}&label=ci&style=flat-square`
+
+  if (await badgeExists(url)) {
+    return `[![GitHub CI](${url})](//github.com/${gh}/actions?query=branch%3A${branch}+workflow%3Aci+)`
+  } else {
+    return 'N/A'
+  }
 }
 
-const leadMaintainer = (_, pkg) => new Promise(resolve => {
-  request.get(`https://unpkg.com/${pkg}/package.json`, (error, res, body) => {
-    if (error || res.statusCode >= 400) {
-      return resolve('N/A')
-    }
-
-    let lead = JSON.parse(body).leadMaintainer
-
-    if (lead) {
-      lead = lead.match(/(.*) <(.+\@.+\..*)>/)
-      const name = lead[1].trim()
-      const mail = lead[2].trim()
-      return resolve(`[${name}](mailto:${mail})`)
-    }
-
-    resolve('N/A')
-  })
-})
+const coverage = (gh, pkg, branch = 'master') => {
+  return `[![codecov](https://codecov.io/gh/${gh}/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/${gh})`
+}
 
 const description = (gh, pkg, desc) => desc
 
@@ -58,9 +49,8 @@ module.exports = {
   Name: name,
   Version: npmVersion,
   Deps: deps,
-  CI: ciTravis,
+  CI: ciGitHub,
   'CI/Travis': ciTravis,
-  'Lead Maintainer': leadMaintainer,
   Coverage: coverage,
   Description: description
 }
