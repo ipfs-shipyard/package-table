@@ -1,3 +1,15 @@
+## [0.5.7](https://github.com/ipfs-shipyard/package-table/compare/v0.5.6...v0.5.7) (2023-11-17)
+
+
+### Bug Fixes
+
+* use configured branch for coverage url generation ([#41](https://github.com/ipfs-shipyard/package-table/issues/41)) ([d429c06](https://github.com/ipfs-shipyard/package-table/commit/d429c0660d37a0fd9f603caae8c0eb3bd85ba938))
+
+
+### Dependencies
+
+* **dev:** bump the npm_and_yarn at /. security update group with 1 update ([#42](https://github.com/ipfs-shipyard/package-table/issues/42)) ([bdf0e46](https://github.com/ipfs-shipyard/package-table/commit/bdf0e4640d5c9b370f8a014d7fa42c8b6c5c454e))
+
 ## [0.5.6](https://github.com/ipfs-shipyard/package-table/compare/v0.5.5...v0.5.6) (2023-05-10)
 
 

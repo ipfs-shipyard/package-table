@@ -1,6 +1,6 @@
 {
   "name": "package-table",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "description": "Auto generate a package table in markdown from JSON ",
   "author": "David Dias <mail@daviddias.me>",
   "license": "Apache-2.0 OR MIT",
