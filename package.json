@@ -20,10 +20,6 @@
     "table",
     "track"
   ],
-  "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=8.6.0"
-  },
   "bin": "src/index.js",
   "main": "src/index.js",
   "files": [
@@ -31,7 +27,10 @@
     "dist"
   ],
   "eslintConfig": {
-    "extends": "ipfs"
+    "extends": "ipfs",
+    "parserOptions": {
+      "project": true
+    }
   },
   "release": {
     "branches": [
