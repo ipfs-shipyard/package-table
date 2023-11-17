@@ -1,17 +1,30 @@
 #! /usr/bin/env node
 'use strict'
 
+const { parseArgs } = require('node:util')
 const path = require('path')
-const yargs = require('yargs')
 const packageBadges = require('./badges')
-const argv = yargs.argv
 
-if (!argv.data) {
+const argv = parseArgs({
+  options: {
+    data: {
+      type: 'string'
+    }
+  }
+})
+
+if (!argv.values.data) {
   console.log('Need to pass --data=<file with data>') // eslint-disable-line no-console
   process.exit()
 }
 
-const data = require(path.join(process.cwd(), argv.data))
+let data
+
+if (path.isAbsolute(argv.values.data)) {
+  data = require(argv.values.data)
+} else {
+  data = require(path.join(process.cwd(), argv.values.data))
+}
 
 // Creates the table row for a package
 const generatePackageRow = async item => {
