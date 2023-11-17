@@ -6,19 +6,19 @@ const badgeExists = async (url) => {
   return res.statusCode !== 404
 }
 
-const name = (gh, pkg, branch = 'master') => {
+const name = (gh, pkg, branch = 'main') => {
   return `[\`${pkg}\`](//github.com/${gh})`
 }
 
-const npmVersion = (gh, pkg, branch = 'master') => {
+const npmVersion = (gh, pkg, branch = 'main') => {
   return `[![npm](https://img.shields.io/npm/v/${encodeURIComponent(pkg)}.svg?maxAge=86400&style=flat-square)](//github.com/${gh}/releases)`
 }
 
-const deps = (gh, pkg, branch = 'master') => {
+const deps = (gh, pkg, branch = 'main') => {
   return `[![Deps](https://img.shields.io/librariesio/release/npm/${encodeURIComponent(pkg)}?logo=Libraries.io&logoColor=white&style=flat-square)](//libraries.io/npm/${encodeURIComponent(pkg)})`
 }
 
-const ciTravis = async (gh, pkg, branch = 'master', ci = 'main.yml') => {
+const ciTravis = async (gh, pkg, branch = 'main', ci = 'main.yml') => {
   const url = `https://flat.badgen.net/travis/${gh}/${branch}`
 
   if (await badgeExists(url)) {
@@ -28,7 +28,7 @@ const ciTravis = async (gh, pkg, branch = 'master', ci = 'main.yml') => {
   }
 }
 
-const ciGitHub = async (gh, pkg, branch = 'master', ci = 'main.yml') => {
+const ciGitHub = async (gh, pkg, branch = 'main', ci = 'main.yml') => {
   const url = `https://img.shields.io/github/actions/workflow/status/${gh}/${ci}?branch=${branch}&label=ci&style=flat-square`
 
   if (await badgeExists(url)) {
@@ -38,7 +38,7 @@ const ciGitHub = async (gh, pkg, branch = 'master', ci = 'main.yml') => {
   }
 }
 
-const coverage = (gh, pkg, branch = 'master') => {
+const coverage = (gh, pkg, branch = 'main') => {
   return `[![codecov](https://codecov.io/gh/${gh}/branch/${branch}/graph/badge.svg?style=flat-square)](https://codecov.io/gh/${gh})`
 }
 

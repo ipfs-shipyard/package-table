@@ -1,7 +1,7 @@
 # package-table <!-- omit in toc -->
 
 [![codecov](https://img.shields.io/codecov/c/github/ipfs-shipyard/package-table.svg?style=flat-square)](https://codecov.io/gh/ipfs-shipyard/package-table)
-[![CI](https://img.shields.io/github/actions/workflow/status/ipfs-shipyard/package-table/js-test-and-release.yml?branch=master\&style=flat-square)](https://github.com/ipfs-shipyard/package-table/actions/workflows/js-test-and-release.yml?query=branch%3Amaster)
+[![CI](https://img.shields.io/github/actions/workflow/status/ipfs-shipyard/package-table/js-test-and-release.yml?branch=main\&style=flat-square)](https://github.com/ipfs-shipyard/package-table/actions/workflows/js-test-and-release.yml?query=branch%3Amain)
 
 > Auto generate a package table in markdown from JSON
 
