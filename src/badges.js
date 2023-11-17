@@ -19,7 +19,7 @@ const deps = (gh, pkg, branch = 'master') => {
 }
 
 const ciTravis = async (gh, pkg, branch = 'master', ci = 'main.yml') => {
-  const url = `https://flat.badgen.net/travis/${gh}/master`
+  const url = `https://flat.badgen.net/travis/${gh}/${branch}`
 
   if (await badgeExists(url)) {
     return `[![Travis CI](${url})](https://travis-ci.com/${gh})`
@@ -39,7 +39,7 @@ const ciGitHub = async (gh, pkg, branch = 'master', ci = 'main.yml') => {
 }
 
 const coverage = (gh, pkg, branch = 'master') => {
-  return `[![codecov](https://codecov.io/gh/${gh}/branch/master/graph/badge.svg?style=flat-square)](https://codecov.io/gh/${gh})`
+  return `[![codecov](https://codecov.io/gh/${gh}/branch/${branch}/graph/badge.svg?style=flat-square)](https://codecov.io/gh/${gh})`
 }
 
 const description = (gh, pkg, desc) => desc
