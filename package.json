@@ -123,9 +123,6 @@
     "test": "aegir test -t node",
     "release": "aegir release"
   },
-  "dependencies": {
-    "yargs": "^17.7.2"
-  },
   "devDependencies": {
     "aegir": "^41.1.9"
   }
